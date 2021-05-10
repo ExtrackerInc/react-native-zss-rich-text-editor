@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {FlatList, View, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {actions} from './const';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const defaultActions = [
   actions.insertImage,
@@ -92,17 +93,42 @@ export default class RichTextToolbar extends Component {
   }
 
   _defaultRenderAction(action, selected) {
-    const icon = this._getButtonIcon(action);
+    // const style = {tintColor: selected ? this.props.selectedIconTint : this.props.iconTint}
+    const buttonIcon = this._getButtonIcon(action);
+    // const icon = buttonIcon ? 
+    //   buttonIcon.type?.displayName ?
+
+    //     {...buttonIcon, style}
+    //     :
+    //     <Image source={icon} style={{tintColor: selected ? this.props.selectedIconTint : this.props.iconTint}}/>
+    //   :
+    //   null
+
+    // const icon = <Icon name="format-bold" />
+    
+    // const x = <Image />
+    // console.log('buttonIcon')
+    // console.log(buttonIcon)
+
     return (
       <TouchableOpacity
           key={action}
           style={[
-            {height: 50, width: 50, justifyContent: 'center'},
-            selected ? this._getButtonSelectedStyle() : this._getButtonUnselectedStyle()
+            {height: 44, width: 44, justifyContent: 'center'},
+            // selected ? this._getButtonSelectedStyle() : this._getButtonUnselectedStyle()
           ]}
           onPress={() => this._onPress(action)}
       >
-        {icon ? <Image source={icon} style={{tintColor: selected ? this.props.selectedIconTint : this.props.iconTint}}/> : null}
+        <Icon
+          // style={{
+          //   width: '100%',
+          //   height: '100%',
+          // }}
+          size={20}
+          color={selected ? this.props.selectedIconTint : this.props.iconTint}
+          name={this._getButtonIcon(action)}
+        />
+        {/* {icon ? <Image source={icon} style={{tintColor: selected ? this.props.selectedIconTint : this.props.iconTint}}/> : null} */}
       </TouchableOpacity>
     );
   }
@@ -116,7 +142,7 @@ export default class RichTextToolbar extends Component {
   render() {
     return (
       <View
-          style={[{height: 50, backgroundColor: '#D3D3D3', alignItems: 'center'}, this.props.style]}
+          style={[{height: 44, backgroundColor: '#D3D3D3', alignItems: 'center'}, this.props.style]}
       >
        <FlatList
           data={this.state.dataSet}

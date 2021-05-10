@@ -303,6 +303,7 @@ export default class RichTextEditor extends Component {
           ref={(r) => {this.webview = r}}
           onMessage={(message) => this.onMessage(message)}
           // injectedJavaScript={injectScript}
+          originWhitelist={['*']}
           source={pageSource}
           onLoad={() => this.init()}
         />
