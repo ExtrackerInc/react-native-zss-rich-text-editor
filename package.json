@@ -9,7 +9,7 @@
   "main": "index.js",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "react-native-webview": "13.1.0"
+    "react-native-webview": "13.2.0"
   },
   "peerDependencies": {
     "react": "*",
